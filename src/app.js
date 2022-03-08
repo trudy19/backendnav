@@ -24,9 +24,9 @@ app.use(cors())
 app.use(nocache())
 app.use(logger('dev'));
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/workerGroups', workerGroupsRouter);
@@ -49,7 +49,6 @@ const server = app.listen(process.env.PORT || 5000, () => {
   console.log(`Express is working on port ${port}`);
 });
 // error handler
-/*
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -58,6 +57,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});*/
+});
 
 module.exports = app;
